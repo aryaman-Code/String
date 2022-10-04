@@ -1,0 +1,64 @@
+
+        ArrayList<Integer> search(String pat, ArrayListring Integer)
+        {
+            //code hee.
+            ArrayList<Integer> ans=new ArrayList;
+            int n=pat.length();
+            int lps[]=new int[n];
+            pietable(pat,lps);
+          
+            int m=txt.length();
+            int i=0;int j=0;
+            while(i<m)
+            {
+                if(txt.charAt(i)==pat.charAt(j))
+                {
+                    i++;j++;
+                    if(j==n)
+                    {
+                        ans.add(i-n+1);
+                        j=lps[j-1];
+                    }
+                }
+                else if(j!=0)
+                {
+                    j=lps[j-1];
+                }
+                else
+                i++;
+                
+            }
+            return ans;
+        }
+        void pietable(String s,ArrayList<Integer> lps)
+        {
+            int n=s.length();
+            int i=1;int len=0;;
+            while(i<n)
+            {
+                if(s.charAt(len)==s.charAt(i))
+                {
+                    len++;
+                    lps[i]=len;
+                    i++;
+                }
+                  // This is tricky. Consider the example.
+            // AAACAAAA and i = 7. The idea is similar
+            // to search step.
+            //“AAACAAAAAC”, 
+//lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4] 
+                else if(len!=0)
+                {
+                    len=lps[len-1];
+                }
+                else
+                {
+                    lps[i]=0;
+                    i++;
+                }
+            }
+            
+        }
+     
+};
+
